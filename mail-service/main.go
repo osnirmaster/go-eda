@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/google/uuid"
+	"github.com/osnirmaster/go-event-carried-state-transfer/entity"
 )
 
 func main() {
@@ -24,6 +26,10 @@ func main() {
 		msg, err := c.ReadMessage(-1)
 		if err == nil {
 			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
+			insured := entity.Customer{Id: uuid.NewString(), Name: "Lucas", Email: "master@master.com", Phone: "11111-1111"}
+			mail := entity.Mail{Insured: insured}
+
+			fmt.Println("Log: ", insured, " ", mail)
 		} else {
 			// The client will automatically try to recover from all errors.
 			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
