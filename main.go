@@ -5,7 +5,7 @@ import (
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/google/uuid"
-	"github.com/osnirmaster/go-event-carried-state-transfer/entity"
+	"github.com/osnirmaster/go-event-carried-state-transfer/mail-service/entity"
 )
 
 func main() {
@@ -14,6 +14,7 @@ func main() {
 		"bootstrap.servers": "localhost:9092",
 		"group.id":          "mail-service",
 		"auto.offset.reset": "earliest",
+		"sasl.mechanismo":   "PLAIN",
 	})
 
 	if err != nil {
