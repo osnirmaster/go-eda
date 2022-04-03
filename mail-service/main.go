@@ -26,8 +26,10 @@ func main() {
 		msg, err := c.ReadMessage(-1)
 		if err == nil {
 			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
-			insured := entity.Customer{Id: uuid.NewString(), Name: "Lucas", Email: "master@master.com", Phone: "11111-1111"}
-			mail := entity.Mail{Insured: insured}
+			insured := entity.Customer{Id: uuid.NewString(), Name: "Thanos", Email: "master@master.com", Phone: "11111-1111"}
+			mail := entity.Mail{}
+			result := mail.GetTemplateMail(insured)
+			fmt.Printf(result)
 
 			fmt.Println("Log: ", insured, " ", mail)
 		} else {
